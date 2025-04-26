@@ -42,25 +42,33 @@ export default function Incidents() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Table>
-        <TableHeader className="opacity-80">
-          <TableRow>
-            <TableHead>S.No</TableHead>
-            <TableHead>Title</TableHead>
-            <TableHead>Severity</TableHead>
-            <TableHead>Reported At</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {currentIncidents.map((incident, idx) => (
-            <IncidentRow
-              key={incident.id}
-              incident={incident}
-              index={ITEMS_PER_PAGE * (currentPage - 1) + idx}
-            />
-          ))}
-        </TableBody>
-      </Table>
+      {currentIncidents.length === 0 && (
+        <div className="flex items-center justify-center h-20">
+          No records found
+        </div>
+      )}
+      {currentIncidents.length > 0 && (
+        <Table>
+          <TableHeader className="opacity-80">
+            <TableRow>
+              <TableHead>S.No</TableHead>
+              <TableHead>Title</TableHead>
+              <TableHead>Severity</TableHead>
+              <TableHead>Reported At</TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            {currentIncidents.map((incident, idx) => (
+              <IncidentRow
+                key={incident.id}
+                incident={incident}
+                index={ITEMS_PER_PAGE * (currentPage - 1) + idx}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      )}
       <div className="flex justify-between items-center">
         <div>
           <p className="text-sm text-muted-foreground">

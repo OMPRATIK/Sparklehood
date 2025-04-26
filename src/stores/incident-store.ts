@@ -12,6 +12,7 @@ type IncidentState = {
 export const useIncidentStore = create<IncidentState>((set) => ({
   allIncidents: mockIncidents,
   incidents: mockIncidents,
+
   setIncidents: (incidents: Incident[]) => set({ incidents }),
   resetIncidents: () =>
     set((state) => ({
