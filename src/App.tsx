@@ -35,19 +35,16 @@ function App() {
           <Incidents />
         </div>
       </main>
-      <footer className="flex justify-between px-4 py-2">
-        <div className="flex">
-          Made with <Heart className="text-primary mx-2" /> by Pratik
-        </div>
-        <div>
-          For more{" "}
+      <footer className="flex items-center justify-center">
+        <div className="text-sm text-muted-foreground flex items-center gap-1">
+          Made with <Heart className="size-4 text-primary" /> by{" "}
           <a
             href="https://ompratik.tech"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:underline hover:text-blue-600 transition-colors"
           >
-            ompratik.tech
+            Pratik
           </a>
         </div>
       </footer>
