@@ -35,7 +35,7 @@ function App() {
           <Incidents />
         </div>
       </main>
-      <footer className="flex items-center justify-center">
+      <footer className="flex items-center justify-center p-4">
         <div className="text-sm text-muted-foreground flex items-center gap-1">
           Made with <Heart className="size-4 text-primary" /> by{" "}
           <a
