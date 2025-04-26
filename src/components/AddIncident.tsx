@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
-
 import {
   Select,
   SelectContent,
@@ -22,61 +21,137 @@ import { Label } from "./ui/label";
 import { useState } from "react";
 import { type Incident, type Severity } from "@/incidents";
 import { useIncidentStore } from "@/stores/incident-store";
+import { Alert, AlertDescription } from "./ui/alert";
+import { toast } from "sonner";
+
+const initData: Omit<Incident, "id" | "reported_at"> = {
+  title: "",
+  description: "",
+  severity: "Medium",
+};
 
 export default function AddIncident() {
-  const [data, setDat] = useState<Incident | null>(null);
+  const [formData, setFormData] = useState(initData);
+  const [errors, setErrors] = useState<Partial<typeof formData>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { addIncident } = useIncidentStore();
+
+  const validateForm = () => {
+    const newErrors: Partial<typeof formData> = {};
+
+    if (!formData.title.trim()) {
+      newErrors.title = "Title is required";
+    }
+
+    if (!formData.description.trim()) {
+      newErrors.description = "Description is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-    const title = formData.get("title") as string;
-    const severity = formData.get("severity") as Severity;
-    const description = formData.get("description") as string;
+    setSubmitError(null);
 
-    if (title && severity && description) {
-      addIncident({ title, severity, description } as Incident);
+    if (!validateForm()) {
+      setSubmitError("Please fill in all required fields");
+      return;
     }
+
+    addIncident({
+      ...formData,
+      id: Date.now(),
+      reported_at: new Date().toISOString(),
+    });
+    setFormData(initData);
+    toast.success("Incident added successfully", {
+      description: "The incident has been added to the list.",
+    });
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleSeverityChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, severity: value as Severity }));
   };
 
   return (
     <Card className="">
       <CardHeader>
-        <CardTitle>Add new incidents</CardTitle>
+        <CardTitle>Report new incidents</CardTitle>
         <CardDescription>Add real incident on AI</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit}>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex gap-4">
-              <div className="flex flex-col space-y-1.5 flex-grow">
-                <Label htmlFor="title">Title</Label>
-                <Input id="title" placeholder="Title" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="severity">Severity</Label>
-                <Select>
-                  <SelectTrigger id="severity">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="Low">Low</SelectItem>
-                    <SelectItem value="Medium">Medium</SelectItem>
-                    <SelectItem value="High">High</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+        <form onSubmit={handleSubmit} id="incident-form" className="space-y-4">
+          {submitError && (
+            <Alert variant="destructive">
+              <AlertDescription>{submitError}</AlertDescription>
+            </Alert>
+          )}
+
+          <div className="flex gap-4">
+            <div className="flex flex-col space-y-2 flex-grow">
+              <Label htmlFor="title">Title *</Label>
+              <Input
+                id="title"
+                name="title"
+                placeholder="Title"
+                value={formData.title}
+                onChange={handleChange}
+                className={errors.title ? "border-red-500" : ""}
+              />
+              {errors.title && (
+                <p className="text-sm text-red-500">{errors.title}</p>
+              )}
             </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="description">Description</Label>
-              <Textarea id="description" placeholder="Description" />
+
+            <div className="flex flex-col space-y-2">
+              <Label htmlFor="severity">Severity *</Label>
+              <Select
+                value={formData.severity}
+                onValueChange={handleSeverityChange}
+              >
+                <SelectTrigger id="severity">
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  <SelectItem value="Low">Low</SelectItem>
+                  <SelectItem value="Medium">Medium</SelectItem>
+                  <SelectItem value="High">High</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <Label htmlFor="description">Description *</Label>
+            <Textarea
+              id="description"
+              name="description"
+              placeholder="Description"
+              value={formData.description}
+              onChange={handleChange}
+              className={errors.description ? "border-red-500" : ""}
+            />
+            {errors.description && (
+              <p className="text-sm text-red-500">{errors.description}</p>
+            )}
           </div>
         </form>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button>
-          <Plus className="mr-1" /> Add new incident
+        <Button type="submit" form="incident-form">
+          <Plus /> Report new incident
         </Button>
       </CardFooter>
     </Card>

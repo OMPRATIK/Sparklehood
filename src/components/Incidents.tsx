@@ -18,13 +18,12 @@ import IncidentRow from "./IncidentRow";
 import { useIncidentStore } from "@/stores/incident-store";
 import { useState } from "react";
 
-const ITEMS_PER_PAGE = 15;
+const ITEMS_PER_PAGE = 10;
 export default function Incidents() {
   const { incidents } = useIncidentStore();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(incidents.length / ITEMS_PER_PAGE);
 
-  // Get current incidents
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentIncidents = incidents.slice(indexOfFirstItem, indexOfLastItem);
@@ -42,7 +41,7 @@ export default function Incidents() {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-end">
+    <div className="flex flex-col gap-4">
       <Table>
         <TableHeader className="opacity-80">
           <TableRow>
@@ -53,27 +52,46 @@ export default function Incidents() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {currentIncidents.map((incident) => (
-            <IncidentRow key={incident.id} incident={incident} />
+          {currentIncidents.map((incident, idx) => (
+            <IncidentRow
+              key={incident.id}
+              incident={incident}
+              index={ITEMS_PER_PAGE * (currentPage - 1) + idx}
+            />
           ))}
         </TableBody>
       </Table>
-      <div>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <button disabled={currentPage === 1}>
-                <PaginationPrevious onClick={handlePrevious} />
-              </button>
-            </PaginationItem>
+      <div className="flex justify-between items-center">
+        <div>
+          <p className="text-sm text-muted-foreground">
+            Showing {indexOfFirstItem + 1} to{" "}
+            {Math.min(indexOfLastItem, incidents.length)} of {incidents.length}{" "}
+            incidents
+          </p>
+        </div>
+        <div>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <button
+                  disabled={currentPage === 1}
+                  className="disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <PaginationPrevious onClick={handlePrevious} />
+                </button>
+              </PaginationItem>
 
-            <PaginationItem>
-              <button disabled={currentPage === totalPages}>
-                <PaginationNext onClick={handleNext} />
-              </button>
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+              <PaginationItem>
+                <button
+                  disabled={currentPage === totalPages}
+                  className="disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <PaginationNext onClick={handleNext} />
+                </button>
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </div>
   );
