@@ -1,5 +1,6 @@
 # AI 🤖 Safety Incident Dashboard -  Humanchain
 A modern dashboard for tracking and managing AI safety incidents, built with React, TypeScript, and Tailwind CSS.
+
 Live at - https://sparklehood-beryl.vercel.app/
 
 ## 🪧 Demo
