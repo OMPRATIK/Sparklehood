@@ -1,6 +1,11 @@
 # AI 🤖 Safety Incident Dashboard -  Humanchain
-
 A modern dashboard for tracking and managing AI safety incidents, built with React, TypeScript, and Tailwind CSS.
+Live at - https://sparklehood-beryl.vercel.app/
+
+## 🪧 Demo
+
+https://github.com/user-attachments/assets/79bfdb75-089c-46e7-9536-83224dcd63ea
+
 
 ## 💫 Features
 
@@ -23,7 +28,7 @@ A modern dashboard for tracking and managing AI safety incidents, built with Rea
 - **Clean UI 💻**:
   - Responsive design works on all devices
   - Modern interface with ShadCN UI components
-  - Color-coded severity indicators
+  - 🌑 Dark and ☀️ light mode
 
 - **State Management 🔧**:
   - Zustand for efficient global state management
@@ -37,6 +42,7 @@ A modern dashboard for tracking and managing AI safety incidents, built with Rea
   - Tailwind CSS
   - ShadCN UI Component Library
   - Zustand (State Management)
+  - Vercek (Deployment)
 
 - **Development Tools**:
   - Vite (Build Tool)
