@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/79bfdb75-089c-46e7-9536-83224dcd63ea
   - toast on adding new incident
 
 - **Searching 🔍**:
-  - Full-text search across incident titles and descriptions
+  - Full-text search across incident titles
   - Real-time filtering as you type
   - Simple Pagination
 
