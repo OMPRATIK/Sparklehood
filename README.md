@@ -5,8 +5,7 @@ Live at - https://sparklehood-beryl.vercel.app/
 
 ## 🪧 Demo
 
-https://github.com/user-attachments/assets/79bfdb75-089c-46e7-9536-83224dcd63ea
-
+https://github.com/user-attachments/assets/b0a41c2c-e4ce-48a9-8b47-bd8d1fabea47
 
 ## 💫 Features
 
