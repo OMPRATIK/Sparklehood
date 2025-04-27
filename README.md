@@ -15,6 +15,7 @@ https://github.com/user-attachments/assets/79bfdb75-089c-46e7-9536-83224dcd63ea
   - Add new incidents with title, description, and severity
   - Filter incidents by severity level (Low/Medium/High)
   - Sort incidents by reporting date (Newest/Oldest first)
+  - Click to view the complete detail and full description
  
 - **Form 📝**:
   - Basic form validation (check if empty)
