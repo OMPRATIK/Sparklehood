@@ -86,12 +86,12 @@ export default function AddIncident() {
   };
 
   return (
-    <Card className="">
+    <Card className="py-4 sm:py-6">
       <CardHeader>
         <CardTitle>Report new incidents</CardTitle>
         <CardDescription>Add real incident on AI</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         <form onSubmit={handleSubmit} id="incident-form" className="space-y-4">
           {submitError && (
             <Alert variant="destructive">
@@ -101,7 +101,9 @@ export default function AddIncident() {
 
           <div className="flex gap-4">
             <div className="flex flex-col space-y-2 flex-grow">
-              <Label htmlFor="title">Title *</Label>
+              <Label className="flex gap-0" htmlFor="title">
+                Title <span className="text-primary">*</span>
+              </Label>
               <Input
                 id="title"
                 name="title"
@@ -116,7 +118,10 @@ export default function AddIncident() {
             </div>
 
             <div className="flex flex-col space-y-2">
-              <Label htmlFor="severity">Severity *</Label>
+              <Label className="flex gap-0" htmlFor="severity">
+                Severity
+                <span className="text-primary">*</span>
+              </Label>
               <Select
                 value={formData.severity}
                 onValueChange={handleSeverityChange}
@@ -134,7 +139,9 @@ export default function AddIncident() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <Label htmlFor="description">Description *</Label>
+            <Label className="flex gap-0" htmlFor="description">
+              Description<span className="text-primary">*</span>
+            </Label>
             <Textarea
               id="description"
               name="description"

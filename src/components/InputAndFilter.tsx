@@ -95,6 +95,7 @@ export default function InputAndFilter() {
             <ArrowUpDown className="size-4" /> Sort
           </Label>
           <Select
+            value={sort}
             onValueChange={(value) => setSort(value as "Newest" | "Oldest")}
           >
             <SelectTrigger>

@@ -21,7 +21,7 @@ function App() {
             biases, or risks in AI systems you use. Your reports help build
             safer AI for everyone.
           </p>
-          <div className="mb-8">
+          <div className="mb-12 sm:mb-18">
             <AddIncident />
           </div>
           {/* <IncidentSeverityChart /> */}
