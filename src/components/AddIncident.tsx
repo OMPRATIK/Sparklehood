@@ -101,7 +101,7 @@ export default function AddIncident() {
 
           <div className="flex gap-4">
             <div className="flex flex-col space-y-2 flex-grow">
-              <Label className="flex gap-0" htmlFor="title">
+              <Label className="flex gap-0.5" htmlFor="title">
                 Title <span className="text-primary">*</span>
               </Label>
               <Input
@@ -118,7 +118,7 @@ export default function AddIncident() {
             </div>
 
             <div className="flex flex-col space-y-2">
-              <Label className="flex gap-0" htmlFor="severity">
+              <Label className="flex gap-0.5" htmlFor="severity">
                 Severity
                 <span className="text-primary">*</span>
               </Label>
@@ -139,7 +139,7 @@ export default function AddIncident() {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <Label className="flex gap-0" htmlFor="description">
+            <Label className="flex gap-0.5" htmlFor="description">
               Description<span className="text-primary">*</span>
             </Label>
             <Textarea
