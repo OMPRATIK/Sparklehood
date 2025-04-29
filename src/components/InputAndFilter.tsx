@@ -19,7 +19,7 @@ export default function InputAndFilter() {
   const [sort, setSort] = useState<"Newest" | "Oldest">("Newest");
   const [search, setSearch] = useState("");
 
-  const { allIncidents, setIncidents } = useIncidentStore();
+  const { allIncidents, setIncidents, setPage } = useIncidentStore();
 
   useEffect(() => {
     let filteredIncidents =
@@ -40,7 +40,8 @@ export default function InputAndFilter() {
     });
 
     setIncidents(filteredIncidents);
-  }, [allIncidents, severity, sort, search, setIncidents]);
+    setPage(1);
+  }, [allIncidents, severity, sort, search, setIncidents, setPage]);
 
   return (
     <div className="flex flex-col sm:flex-row justify-between gap-4 sm:items-center">

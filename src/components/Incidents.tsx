@@ -16,27 +16,26 @@ import {
 
 import IncidentRow from "./IncidentRow";
 import { useIncidentStore } from "@/stores/incident-store";
-import { useState } from "react";
 
 const ITEMS_PER_PAGE = 10;
 export default function Incidents() {
-  const { incidents } = useIncidentStore();
-  const [currentPage, setCurrentPage] = useState(1);
+  const { incidents, page, nextPage, previousPage } = useIncidentStore();
+
   const totalPages = Math.ceil(incidents.length / ITEMS_PER_PAGE);
 
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfLastItem = page * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const currentIncidents = incidents.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+    if (page > 1) {
+      previousPage();
     }
   };
 
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prev) => prev + 1);
+    if (page < totalPages) {
+      nextPage();
     }
   };
 
@@ -53,8 +52,11 @@ export default function Incidents() {
             <TableRow>
               <TableHead>S.No</TableHead>
               <TableHead>Title</TableHead>
-              <TableHead>Severity</TableHead>
-              <TableHead>Reported At</TableHead>
+              <TableHead className="hidden md:table-cell">Severity</TableHead>
+              <TableHead className="hidden md:table-cell">
+                Reported At
+              </TableHead>
+              <TableHead>&nbsp;</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -63,7 +65,7 @@ export default function Incidents() {
               <IncidentRow
                 key={incident.id}
                 incident={incident}
-                index={ITEMS_PER_PAGE * (currentPage - 1) + idx}
+                index={ITEMS_PER_PAGE * (page - 1) + idx}
               />
             ))}
           </TableBody>
@@ -82,7 +84,7 @@ export default function Incidents() {
             <PaginationContent>
               <PaginationItem>
                 <button
-                  disabled={currentPage === 1}
+                  disabled={page === 1}
                   className="disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <PaginationPrevious onClick={handlePrevious} />
@@ -91,7 +93,7 @@ export default function Incidents() {
 
               <PaginationItem>
                 <button
-                  disabled={currentPage === totalPages}
+                  disabled={page === totalPages}
                   className="disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <PaginationNext onClick={handleNext} />
