@@ -43,7 +43,7 @@ https://github.com/user-attachments/assets/b0a41c2c-e4ce-48a9-8b47-bd8d1fabea47
   - Tailwind CSS
   - ShadCN UI Component Library
   - Zustand (State Management)
-  - Vercek (Deployment)
+  - Vercel (Deployment)
 
 - **Development Tools**:
   - Vite (Build Tool)
