@@ -27,6 +27,10 @@ export default function InputAndFilter() {
       severity === "All"
         ? copyIncidents
         : copyIncidents.filter((incident) => incident.severity === severity);
+    // let filteredIncidents =
+    //   severity === "All"
+    //     ? allIncidents
+    //     : allIncidents.filter((incident) => incident.severity === severity);
 
     if (search) {
       filteredIncidents = filteredIncidents.filter((incident) =>

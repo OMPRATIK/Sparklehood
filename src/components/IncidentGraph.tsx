@@ -73,7 +73,12 @@ export function IncidentGraph() {
   const { allIncidents } = useIncidentStore();
   const [activeChart, setActiveChart] =
     React.useState<keyof typeof chartConfig>("medium");
-  const chartData = processIncidentData(allIncidents);
+
+  const chartData = processIncidentData(allIncidents).sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateA - dateB;
+  });
 
   const totals = React.useMemo(
     () => ({
