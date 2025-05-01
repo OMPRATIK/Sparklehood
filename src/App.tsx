@@ -12,7 +12,7 @@ function App() {
   const { incidents } = useIncidentStore();
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-[999] bg-background ">
+      <header className="fixed top-0 left-0 right-0 z-[40] bg-background ">
         <Navbar />
       </header>
       <main className="flex-grow mt-20 mb-20">
@@ -29,7 +29,7 @@ function App() {
             <IncidentGraph />
           </div>
           {/* <IncidentSeverityChart /> */}
-          <div className="mb-4 flex flex-col sm:flex-row justify-between">
+          <div className="mb-6 flex flex-col sm:flex-row justify-between">
             <div className="mb-4">
               <h2 className="text-xl ">All incidents ({incidents.length})</h2>
               <p className="text-muted-foreground">
