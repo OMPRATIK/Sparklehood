@@ -28,7 +28,6 @@ function App() {
           <div className="mb-12 sm:mb-18">
             <IncidentGraph />
           </div>
-          {/* <IncidentSeverityChart /> */}
           <div className="mb-6 flex flex-col sm:flex-row justify-between">
             <div className="mb-4">
               <h2 className="text-xl ">All incidents ({incidents.length})</h2>

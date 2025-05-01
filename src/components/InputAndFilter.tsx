@@ -22,10 +22,11 @@ export default function InputAndFilter() {
   const { allIncidents, setIncidents, setPage } = useIncidentStore();
 
   useEffect(() => {
+    const copyIncidents = [...allIncidents];
     let filteredIncidents =
       severity === "All"
-        ? allIncidents
-        : allIncidents.filter((incident) => incident.severity === severity);
+        ? copyIncidents
+        : copyIncidents.filter((incident) => incident.severity === severity);
 
     if (search) {
       filteredIncidents = filteredIncidents.filter((incident) =>
