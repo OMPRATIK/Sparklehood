@@ -37,17 +37,16 @@ https://github.com/user-attachments/assets/b0a41c2c-e4ce-48a9-8b47-bd8d1fabea47
 
 ## 🛠️ Technologies Used
 
-- **Frontend**:
-  - React 19
-  - TypeScript
-  - Tailwind CSS
-  - ShadCN UI Component Library
-  - Zustand (State Management)
-  - Vercel (Deployment)
-
-- **Development Tools**:
-  - Vite (Build Tool)
-  - React Icons (Lucide)
+| Category           | Technology               | Purpose                          |
+|--------------------|--------------------------|----------------------------------|
+| **Frontend**       | React 19                 | Core UI Framework                |
+|                    | TypeScript               | Static Typing                    |
+|                    | Tailwind CSS             | Utility-First Styling            |
+|                    | ShadCN UI                | Reusable Components              |
+|                    | Zustand                  | State Management                 |
+|                    | Vercel                   | Deployment                       |
+| **Development**    | Vite                     | Fast Build Tool                  |
+|                    | React Icons (Lucide)     | Icon Library                     |
 
 ## Getting Started
 
