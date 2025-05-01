@@ -18,6 +18,7 @@ export const useIncidentStore = create<IncidentState>((set) => ({
   allIncidents: mockIncidents,
   incidents: mockIncidents,
   page: 1,
+
   setPage: (page: number) => set({ page }),
   nextPage: () => {
     set((state) => ({ page: state.page + 1 }));

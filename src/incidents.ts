@@ -409,4 +409,12 @@ export const mockIncidents: Incident[] = [
     severity: "High",
     reported_at: "2025-03-04T15:30:00Z",
   },
+  {
+    id: 51,
+    title: "Unauthorized Model Fine-Tuning 2",
+    description:
+      "Research 2 team conducted unapproved training runs using non-reviewed datasets on production models. The activity bypassed governance controls by using shadow infrastructure not covered by our normal monitoring.",
+    severity: "High",
+    reported_at: "2025-03-04T15:30:00Z",
+  },
 ];
